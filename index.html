@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌤️ 天晴藝術療癒諮商室</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #003153; /* 主體色 (深藍) */
+            --color-accent: #007EA7; /* 輔助色 (亮藍) */
+            --color-neutral-bg: #EDEDED; /* (未使用) */
+            --color-highlight: #FFD166; /* 亮點色 (黃) */
+            --color-text-primary-dark: #2D2D2D; /* 深色文字 */
+            --color-text-bright: #FFFFFF; /* 亮色文字 */
+            --color-text-secondary-bright: #bde0fe; /* 亮色次要文字 (淺藍) */
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            color: var(--color-text-bright); /* 預設文字為亮色 */
+            background-color: var(--color-primary); /* 預設背景為深藍 */
+        }
+        
+        /* 亮色背景區塊 (如 Home) */
+        .section-bg-light {
+            background-color: white;
+            color: var(--color-text-primary-dark); /* 亮背景，配深文字 */
+        }
+        /* 深色背景區塊 (About, Services...) */
+        .section-bg-dark {
+            background-color: var(--color-primary);
+            color: var(--color-text-bright); /* 深背景，配亮文字 */
+        }
+        
+        /* 卡片 (總是白色背景) */
+        .card-bg-light {
+            background-color: white;
+            color: var(--color-text-primary-dark); /* 卡片內文字為深色 */
+        }
+        
+        /* 標題在深色背景上 */
+        .section-bg-dark h1,
+        .section-bg-dark h2,
+        .section-bg-dark h3,
+        .section-bg-dark p {
+            color: var(--color-text-bright);
+        }
+        .section-bg-dark .section-title-desc {
+             color: var(--color-text-secondary-bright);
+        }
+        
+        /* 標題在亮色背景上 */
+        .section-bg-light h1,
+        .section-bg-light h2,
+        .section-bg-light h3 {
+             color: var(--color-primary);
+        }
+        .section-bg-light p {
+             color: var(--color-text-primary-dark);
+        }
+        .section-bg-light .section-title-desc {
+             color: var(--color-text-secondary-dark); /* 可定義為 #4A5568 */
+        }
+
+        /* 卡片內的標題 (總是深色) */
+        .card-bg-light h1,
+        .card-bg-light h2,
+        .card-bg-light h3,
+        .card-bg-light h4 {
+            color: var(--color-primary);
+        }
+        .card-bg-light p, 
+        .card-bg-light li {
+            color: var(--color-text-primary-dark);
+        }
+        .card-bg-light .text-gray-500 { /* 過往課程的描述 */
+             color: #6B7280;
+        }
+
+        .btn-primary {
+            background-color: var(--color-highlight);
+            color: var(--color-primary); 
+        }
+        .btn-primary:hover {
+            background-color: #F0C15A;
+            color: var(--color-primary);
+        }
+        .btn-secondary {
+            background-color: white;
+            color: var(--color-highlight);
+            border: 1px solid var(--color-highlight);
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-highlight);
+            color: var(--color-primary);
+        }
+        
+        /* *** 修正 ***: 讓兩個按鈕樣式一致 */
+        .btn-secondary {
+            background-color: var(--color-highlight); /* 改為與 btn-primary 相同的黃色背景 */
+            color: var(--color-primary); /* 改為與 btn-primary 相同的深色文字 */
+            border: 1px solid var(--color-highlight); /* 邊框也改成黃色 */
+        }
+        .btn-secondary:hover {
+            background-color: #F0C15A; /* hover 效果與 btn-primary 一致 */
+            color: var(--color-primary);
+            border: 1px solid #F0C15A; /* hover 邊框一致 */
+        }
+        
+        /* 頁籤 */
+        .tab-wrapper-bg {
+             background-color: #001f33; /* 頁籤底座，比主色深一點 */
+        }
+        .tab-active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .tab-inactive {
+            background-color: white;
+            color: var(--color-text-primary-dark);
+        }
+        .tab-inactive:hover {
+            background-color: var(--color-accent);
+            color: white;
+        }
+        
+        /* 導覽列 */
+        .hover\:text-accent-color:hover {
+             color: var(--color-accent);
+        }
+        
+        .section-divider {
+            background-color: var(--color-highlight); /* 分隔線使用亮點色 */
+        }
+        .border-accent-color {
+            border-color: var(--color-accent);
+        }
+        
+        /* 聯絡資訊 (深色背景上) */
+        .contact-icon {
+            color: var(--color-highlight); /* Icon 改用亮點色 */
+        }
+        .contact-link {
+            color: var(--color-text-bright); /* 連結文字為亮色 */
+        }
+        .contact-link:hover {
+            color: var(--color-highlight); /* 連結 hover 使用亮點色 */
+        }
+        
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        footer .text-gray-400 {
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header --><header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="block">
+                <img src="main_pic.jpg" alt="天晴藝術療癒諮商室 Logo" class="h-10 md:h-12 w-auto">
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-accent-color transition duration-300">關於我們</a>
+                <a href="#services" class="text-gray-600 hover:text-accent-color transition duration-300">服務項目</a>
+                <a href="#courses" class="text-gray-600 hover:text-accent-color transition duration-300">課程資訊</a>
+                <a href="#contact" class="text-gray-600 hover:text-accent-color transition duration-300">聯絡我們</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-gray-600 hover:text-accent-color">關於我們</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-accent-color">服務項目</a>
+            <a href="#courses" class="block py-2 text-gray-600 hover:text-accent-color">課程資訊</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-accent-color">聯絡我們</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section --><section id="home" class="section-bg-light min-h-[80vh] flex items-center">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <img src="main_pic.jpg" alt="天晴藝術療癒諮商室 Logo" class="w-64 md:w-80 lg:w-96 mx-auto mb-8 animate-fade-in-up">
+                <p class="text-xl md:text-2xl text-text-primary-dark mb-8">讓藝術成為你內在平靜的起點</p>
+                <div class="max-w-xl mx-auto text-lg text-text-primary-dark space-y-2">
+                    <p>每個人都值得擁有一段療癒的旅程。</p>
+                    <p>在天晴藝術療癒諮商室，我們透過藝術創作與心理對話，</p>
+                    <p>陪伴你看見情緒、釋放壓力、重新連結內在的力量。</p>
+                </div>
+                <div class="mt-12 flex justify-center items-center space-x-4">
+                    <a href="#contact" class="btn-primary font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                        🎨 預約諮詢
+                    </a>
+                    <a href="#contact" class="btn-secondary font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                        💌 留言詢問
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section --><section id="about" class="py-20 section-bg-dark">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">🌿 關於我們</h2>
+                    <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-6xl mx-auto grid lg:grid-cols-5 gap-12 items-start">
+                    <div class="lg:col-span-2 space-y-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-highlight-color">我們的理念</h3>
+                            <p>「天晴」，象徵烏雲散去後的光。我們相信，當內在的情緒被理解與接納，生命自然會迎來屬於自己的晴空。</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-highlight-color">我們的使命</h3>
+                            <p>致力於提供安全、溫暖的空間，以藝術創作為橋樑，結合心理學與自我探索，讓每個人都能以獨特的方式，表達情感、療癒創傷、重拾平靜。</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 card-bg-light p-8 rounded-2xl shadow-md border">
+                        <div class="text-center mb-6">
+                            <img src="teacher.jpg" alt="范兆先 諮商師／藝術治療師" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg">
+                            <h3 class="text-2xl font-bold">范兆先Isafann 諮商師／藝術治療師</h3>
+                            <p class="font-semibold" style="color: var(--color-accent);">16年 臨床實務經驗</p>
+                        </div>
+                        
+                        <div class="space-y-6 text-left">
+                            <div>
+                                <h4 class="font-bold text-lg border-b-2 border-accent-color pb-2 mb-3">專業資格</h4>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>台灣藝術治療協會 會員</li>
+                                    <li>心理諮詢師 中國職業資格證照</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg border-b-2 border-accent-color pb-2 mb-3">合作經歷</h4>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>全球身心靈健康發展教育協會 講師</li>
+                                    <li>方寸之舟、芷玲有限公司 教育培訓講師</li>
+                                    <li>小蘋果嬰幼中心 兒童發展講師</li>
+                                    <li>社團法人高雄兒童發展協會 心理畫講師</li>
+                                    <li>曾輔導榮總、高醫、長庚等院醫師之子女</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg border-b-2 border-accent-color pb-2 mb-3">專長領域</h4>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>兒童與青少年發展 (自閉、過動)</li>
+                                    <li>情緒與壓力調適 (憂鬱、情感障礙)</li>
+                                    <li>創傷療癒 (性騷擾、自殺防治)</li>
+                                    <li>複雜性心理議題 (人格分裂)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg border-b-2 border-accent-color pb-2 mb-3">策略療法</h4>
+                                <p>整合運用圖像分析、沙盤遊戲、家庭動力、敘事取向等多種治療策略。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section --><section id="services" class="py-20 section-bg-dark">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">🎨 服務項目</h2>
+                    <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                        <h3 class="text-xl font-bold mb-4">藝術療癒個別諮商</h3>
+                        <p>透過繪畫、黏土、拼貼等媒材，協助你在安全的氛圍中表達情緒與內在故事。適合想了解自我、緩解壓力或經歷生活轉折的人。</p>
+                    </div>
+                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                        <h3 class="text-xl font-bold mb-4">情緒釋放團體工作坊</h3>
+                        <p>與他人一起創作、傾聽與分享，在團體支持中學習共感與情緒整合。（每期主題不同，請留意最新公告。）</p>
+                    </div>
+                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                        <h3 class="text-xl font-bold mb-4">心理支持與諮詢</h3>
+                        <p>提供心理學為基礎的對話與引導，幫助你面對焦慮、低落、關係壓力等挑戰，一步步重建信心與安全感。</p>
+                    </div>
+                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                        <h3 class="text-xl font-bold mb-4">心靈覺察與靜心課程</h3>
+                        <p>結合藝術創作與靜心練習，培養覺察力與內在安定。適合想讓生活更柔軟、更平靜的你。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Courses Section with Tabs --><section id="courses" class="py-20 section-bg-dark">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">✨ 課程資訊</h2>
+                    <p class="mt-4 max-w-2xl mx-auto section-title-desc">探索為您設計的療癒旅程，找到觸動心靈的創作時刻。</p>
+                    <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
+                </div>
+
+                <div class="flex justify-center mb-10">
+                    <div class="flex space-x-2 p-1 rounded-xl shadow-inner tab-wrapper-bg">
+                        <button data-tab="latest" class="course-tab tab-active px-6 py-2 rounded-lg font-semibold transition-colors duration-300">最新課程</button>
+                        <button data-tab="past" class="course-tab tab-inactive px-6 py-2 rounded-lg font-semibold transition-colors duration-300">過往課程回顧</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="latest-courses" class="course-content">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
+                                <div class="overflow-hidden"><img src="https://placehold.co/600x400/a2d2ff/333333?text=課程照片" alt="心靈拼貼課程照片" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"></div>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="text-xl font-bold mb-3">心靈拼貼｜找回內在的聲音</h3>
+                                    <p class="mb-4 flex-grow">透過圖像與直覺，創作一幅反映您內心世界的拼貼畫。無需任何繪畫技巧，只需跟隨心的指引，在這趟旅程中重新看見自己。</p>
+                                    <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="past-courses" class="course-content hidden">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                           <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://placehold.co/600x400/fec89a/333333?text=課程照片" alt="壓力釋放黏土工作坊照片" class="w-full h-56 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300">
+                                    <div class="absolute top-4 left-4 bg-gray-700 text-white text-sm font-semibold px-3 py-1 rounded-full">已結束</div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="text-xl font-bold mb-3">情緒流動｜壓力釋放黏土工作坊</h3>
+                                    <p class="text-gray-500 mb-4 flex-grow">將無形的情緒壓力，透過雙手捏塑、轉化為具體的形狀。這是一個釋放與接納的過程，讓黏土承接你的感受，帶來平靜與力量。</p>
+                                    <button disabled class="mt-auto block text-center w-full bg-gray-300 text-gray-500 cursor-not-allowed font-semibold py-2 px-6 rounded-lg">課程回顧</button>
+                                </div>
+                            </div>
+                           <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://placehold.co/600x400/bde0fe/333333?text=課程照片" alt="親子共畫課程照片" class="w-full h-56 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300">
+                                    <div class="absolute top-4 left-4 bg-gray-700 text-white text-sm font-semibold px-3 py-1 rounded-full">已結束</div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="text-xl font-bold mb-3">親子共畫｜關係連結體驗課</h3>
+                                    <p class="text-gray-500 mb-4 flex-grow">在共同創作的畫布上，增進親子間的默契與理解。這不僅是藝術課，更是一場溫馨的對話，讓愛在色彩中流淌。</p>
+                                    <button disabled class="mt-auto block text-center w-full bg-gray-300 text-gray-500 cursor-not-allowed font-semibold py-2 px-6 rounded-lg">課程回顧</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section --><section id="contact" class="py-20 section-bg-dark">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">💌 聯絡我們</h2>
+                    <p class="mt-4 max-w-2xl mx-auto section-title-desc">如果你準備好踏上療癒的旅程，請留下你的訊息，我們將盡快回覆 💙</p>
+                    <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-lg mx-auto">
+                    <div class="space-y-6 text-lg">
+                        
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>
+                                <strong>電話:</strong><br>
+                                <a href="tel:07-7237979" class="contact-link transition-colors duration-300">07-7237979</a> / 
+                                <a href="tel:0935-011-235" class="contact-link transition-colors duration-300">0935-011-235</a>
+                            </span>
+                        </div>
+
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <a href="mailto:isafann@ms54.hinet.net" class="contact-link transition-colors duration-300 break-all">
+                                <span><strong>Email:</strong> isafann@ms54.hinet.net</span>
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62.75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg>
+                            <a href="https://www.facebook.com/profile.php?id=100064103702351&mibextid=wwxifr" target="_blank" rel="noopener noreferrer" class="contact-link transition-colors duration-300 break-all">
+                                <span><strong>Facebook:</strong> 天晴藝術療癒諮商室</span>
+                            </a>
+                        </div>
+                        <div class="flex items-center">
+                            <!-- *** 修正 ***: 修正 xmlns 錯誤 -->
+                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                            <a href="https://www.instagram.com/sunny_art_healing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="contact-link transition-colors duration-300 break-all">
+                                <span><strong>Instagram:</strong> sunny_art_healing</span>
+                            </a>
+                        </div>
+                        <div class="flex items-center">
+                            <!-- *** 修正 ***: 修正 xmlns 錯誤 -->
+                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.5 3.5A2.5 2.5 0 0 0 18 1H6a2.5 2.5 0 0 0-2.5 2.5V13a2.5 2.5 0 0 0 2.5 2.5h9.58l4.91 4.91c.2.2.45.3.71.3a1 1 0 0 0 .71-.29c.2-.2.3-.45.3-.71V3.5zM12 11.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1zm5-2a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1z"></path>
+                            </svg>
+                            <a href="https://line.me/ti/g2/zbusQOBBhcMwtINXISbmUxwvtjcMow0AwWRt4A?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer" class="contact-link transition-colors duration-300 break-all">
+                                <span><strong>LINE 社群:</strong> 加入療癒分享群組</span>
+                            </a>
+                        </div>
+                        <div class="flex">
+                             <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>
+                                <strong>地點:</strong><br>
+                                <a href="https://www.google.com/maps/search/?api=1&query=高雄市苓雅區林德街10巷9號3樓" target="_blank" rel="noopener noreferrer" class="contact-link transition-colors duration-300">
+                                    高雄市苓雅區林德街10巷9號3樓
+                                </a><br>
+                                <a href="https://www.google.com/maps/search/?api=1&query=高雄市苓雅區三多四路63號7樓之8" target="_blank" rel="noopener noreferrer" class="contact-link transition-colors duration-300">
+                                    高雄市苓雅區三多四路63號7樓之8
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer --><footer class="py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-2">© 2025 天晴藝術療癒諮商室</p>
+            <p class="text-gray-400">🪞 以藝術連結心靈｜以溫柔陪伴療癒</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        const navLinks = document.querySelectorAll('#header a[href^="#"]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- Course Tabs Logic ---
+        const tabs = document.querySelectorAll('.course-tab');
+        const contents = document.querySelectorAll('.course-content');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.dataset.tab;
+                tabs.forEach(t => {
+                    t.classList.remove('tab-active');
+                    t.classList.add('tab-inactive');
+                });
+                tab.classList.add('tab-active');
+                tab.classList.remove('tab-inactive');
+                contents.forEach(content => {
+                    if (content.id === `${targetId}-courses`) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>
+
+
