@@ -168,7 +168,7 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#home" class="block">
                 <!-- 占位 Logo -->
-                <img src="https://placehold.co/200x50/003153/FFFFFF?text=Logo" alt="天晴藝術療癒諮商室 Logo" class="h-10 md:h-12 w-auto" 
+                <img src="images/main_pic.png" alt="天晴藝術療癒諮商室 Logo" class="h-10 md:h-12 w-auto" 
                      onerror="this.src='https://placehold.co/200x50/003153/FFFFFF?text=Logo'; this.onerror=null;">
             </a>
             <nav class="hidden md:flex space-x-8">
@@ -196,7 +196,7 @@
         <section id="home" class="section-bg-light min-h-[80vh] flex items-center">
             <div class="container mx-auto px-6 py-20 text-center">
                 <!-- 占位 Hero 圖片 -->
-                <img src="https://placehold.co/400x400/bde0fe/003153?text=天晴+Hero" alt="天晴藝術療癒諮商室 Logo" class="w-64 md:w-80 lg:w-96 mx-auto mb-8 animate-fade-in-up"
+                <img src="images/main.png" alt="天晴藝術療癒諮商室 Logo" class="w-64 md:w-80 lg:w-96 mx-auto mb-8 animate-fade-in-up"
                      onerror="this.src='https://placehold.co/400x400/bde0fe/003153?text=天晴+Hero'; this.onerror=null;">
                 <p class="text-xl md:text-2xl text-text-primary-dark mb-8">讓藝術成為你內在平靜的起點</p>
                 <div class="max-w-xl mx-auto text-lg text-text-primary-dark space-y-2">
@@ -208,7 +208,7 @@
                     <a href="#courses" class="btn-primary font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
                         🎨 課程資訊
                     </a>
-                    <a href="#contact" class="btn-secondary font-semibold py-3 px-8 rounded-full shadow-lg transition duration-3G00 transform hover:scale-105">
+                    <a href="#contact" class="btn-secondary font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
                         💌 留言詢問
                     </a>
                 </div>
@@ -237,7 +237,7 @@
                     <div class="lg:col-span-3 card-bg-light p-8 rounded-2xl shadow-md border">
                         <div class="text-center mb-6">
                             <!-- 占位 諮商師 圖片 -->
-                            <img src="https://placehold.co/128x128/007EA7/FFFFFF?text=諮商師" alt="范兆先 諮商師／藝術治療師" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg"
+                            <img src="images/teacher.jpg" alt="范兆先 諮商師／藝術治療師" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg"
                                  onerror="this.src='https://placehold.co/128x128/007EA7/FFFFFF?text=諮商師'; this.onerror=null;">
                             <h3 class="text-2xl font-bold">范兆先Isafann 諮商師／藝術治療師</h3>
                             <p class="font-semibold" style="color: var(--color-accent);">16年 臨床實務經驗</p>
@@ -328,25 +328,41 @@
 
                 <div>
                     <div id="latest-courses" class="course-content">
+                        <!-- *** 修改 ***: 原本的 grid-cols-3 改為 grid-cols-2 (在中等螢幕上)，確保並排 -->
                         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            
+                            <!-- 卡片 1: 心靈拼貼 -->
                             <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
                                 <div class="overflow-hidden">
-                                    
-                                    <!-- *** 修改 ***: 更新為本地圖片路徑 -->
                                     <img src="images/latest-course.jpg" 
                                          alt="最新課程照片" 
                                          class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
                                          onerror="this.src='https://placehold.co/600x400/a2d2ff/333333?text=圖片載入失敗'; this.onerror=null;">
-                                    
                                 </div>
                                 <div class="p-6 flex flex-col flex-grow">
-                                    <h3 class="text-xl font-bold mb-3">心靈拼貼｜找回內在的聲音</h3>
-                                    <p class="mb-4 flex-grow">透過圖像與直覺，創作一幅反映您內心世界的拼貼畫。無需任何繪畫技巧，只需跟隨心的指引，在這趟旅程中重新看見自己。</p>
+                                    <h3 class="text-xl font-bold mb-3">✨ 實體課程</h3>
+                                    <p class="mb-4 flex-grow">點擊下方按鈕查看更多資訊。</p>
                                     <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
                                 </div>
                             </div>
                             
-                            <!-- 可在此新增更多最新課程卡片 -->
+                            <!-- *** 新增 ***: 卡片 2: 線上課程 -->
+                            <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
+                                <div class="overflow-hidden">
+                                    <!-- 您可以將 src 改為 'images/online-course.jpg' 之類的 -->
+                                    <img src="https://placehold.co/600x400/007EA7/FFFFFF?text=線上課程" 
+                                         alt="線上課程照片" 
+                                         class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                         onerror="this.src='https://placehold.co/600x400/a2d2ff/333333?text=圖片載入失敗'; this.onerror=null;">
+                                </div>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="text-xl font-bold mb-3">✨ 線上課程</h3>
+                                    <p class="mb-4 flex-grow">不受地點限制，在家就能參與的療癒旅程。點擊下方按鈕查看更多資訊。</p>
+                                    <!-- 您可以將 href 改為您的線上課程報名連結 -->
+                                    <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -355,8 +371,7 @@
                         <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden p-6 md:p-8">
                             <h3 class="text-2xl font-bold mb-6 text-center">📘 天晴藝術療癒課程紀錄</h3>
                             
-                            <!-- *** 修改 ***: 更新為本地 PDF 路徑 -->
-                            <!-- 一層：嘗試以原生 PDF 方式載入（大多數瀏覽器可用） -->
+                            <!-- 本地 PDF 嵌入方案 -->
                             <object 
                               data="images/past-workshop.pdf#toolbar=1" 
                               type="application/pdf" 
@@ -364,7 +379,6 @@
                               height="800"
                               class="rounded-lg border border-gray-300"> 
                              
-                              <!-- 二層：若 object 失敗，嘗試 iframe (同樣指向本地 PDF) -->
                               <iframe 
                                 src="images/past-workshop.pdf" 
                                 width="100%" 
@@ -373,7 +387,6 @@
                                 class="rounded-lg border border-gray-300">
                               </iframe>
                             
-                              <!-- 三層：全部都被擋時，顯示備援連結 (指向本地 PDF) -->
                               <p class="text-center text-base text-gray-700 p-6 bg-gray-100 rounded-lg">
                                 這裡無法顯示 PDF。請
                                 <a href="images/past-workshop.pdf" target="_blank" rel="noopener"
@@ -418,7 +431,7 @@
                         </div>
                         
                         <div class="flex items-center">
-                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62.75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg>
+                            <svg class="w-6 h-6 contact-icon mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62 .75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg>
                             <a href="https://www.facebook.com/profile.php?id=100064103702351&mibextid=wwxifr" target="_blank" rel="noopener noreferrer" class="contact-link transition-colors duration-300 break-all">
                                 <span><strong>Facebook:</strong> 天晴藝術療癒諮商室</span>
                             </a>
@@ -517,4 +530,5 @@
     </script>
 </body>
 </html>
+
 
