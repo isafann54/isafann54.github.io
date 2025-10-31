@@ -239,7 +239,7 @@
                             <!-- 占位 諮商師 圖片 -->
                             <img src="images/teacher.jpg" alt="范兆先 諮商師／藝術治療師" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg"
                                  onerror="this.src='https://placehold.co/128x128/007EA7/FFFFFF?text=諮商師'; this.onerror=null;">
-                            <h3 class="text-2xl font-bold">范兆先 IsaFann 諮商師／藝術治療師</h3>
+                            <h3 class="text-2xl font-bold">范兆先 IsaFann 諮商師／藝術療癒師</h3>
                             <p class="font-semibold" style="color: var(--color-accent);">16年 臨床實務經驗</p>
                         </div>
                         
@@ -259,7 +259,7 @@
                                     <li>方寸之舟、芷玲有限公司 教育培訓講師</li>
                                     <li>小蘋果嬰幼中心 兒童發展講師</li>
                                     <li>社團法人高雄兒童發展協會 心理畫講師</li>
-                                    <li>曾輔導榮總、高醫、長庚等院醫師之子女</li>
+                                    <li>輔導榮總、高醫、長庚等院醫師之子女</li>
 									<li>企業員工 教育培訓講師</li>
 									<li>保進文教機構 幼教師研習培訓</li>
                                 </ul>
@@ -286,97 +286,115 @@
 
         
         <!-- Services Section -->
-        <section id="services" class="py-20 section-bg-dark">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">🎨 服務項目</h2>
-                    <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
-                        <h3 class="text-xl font-bold mb-4">藝術療癒個別諮商</h3>
-                        <p>透過繪畫、黏土、拼貼等媒材，協助你在安全的氛圍中表達情緒與內在故事。適合想了解自我、緩解壓力或經歷生活轉折的人。</p>
-                    </div>
-                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
-                        <h3 class="text-xl font-bold mb-4">情緒釋放團體工作坊</h3>
-                        <p>與他人一起創作、傾聽與分享，在團體支持中學習共感與情緒整合。（每期主題不同，請留意最新公告。）</p>
-                    </div>
-                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
-                        <h3 class="text-xl font-bold mb-4">心理支持與諮詢</h3>
-                        <p>提供心理學為基礎的對話與引導，幫助你面對焦慮、低落、關係壓力等挑戰，一步步重建信心與安全感。</p>
-                    </div>
-                    <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
-                        <h3 class="text-xl font-bold mb-4">心靈覺察與靜心課程</h3>
-                        <p>結合藝術創作與靜心練習，培養覺察力與內在安定。適合想讓生活更柔軟、更平靜的你。</p>
-                    </div>
-					            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+<section id="services" class="py-20 section-bg-dark">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold">🎨 服務項目</h2>
+            <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
+        </div>
+        
+        <!-- 
+          === 關鍵修正 ===
+          請確保您的網格 div 包含 *所有 6 個項目*，
+          並且 class 是 "lg:grid-cols-3" (而不是 4)
+        -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 項目 1 -->
+            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                <h3 class="text-xl font-bold mb-4">藝術療癒個別諮商</h3>
+                <p>透過繪畫、黏土、拼貼等媒材，協助你在安全的氛圍中表達情緒與內在故事。適合想了解自我、緩解壓力或經歷生活轉折的人。</p>
+            </div>
+            
+            <!-- 項目 2 -->
+            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                <h3 class="text-xl font-bold mb-4">情緒釋放團體工作坊</h3>
+                <p>與他人一起創作、傾聽與分享，在團體支持中學習共感與情緒整合。（每期主題不同，請留意最新公告。）</p>
+            </div>
+            
+            <!-- 項目 3 -->
+            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                <h3 class="text-xl font-bold mb-4">心理支持與諮詢</h3>
+                <p>提供心理學為基礎的對話與引導，幫助你面對焦慮、低落、關係壓力等挑戰，一步步重建信心與安全感。</p>
+            </div>
+            
+            <!-- 項目 4 -->
+            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                <h3 class="text-xl font-bold mb-4">心靈覺察與靜心課程</h3>
+                <p>結合藝術創作與靜心練習，培養覺察力與內在安定。適合想讓生活更柔軟、更平靜的你。</p>
+            </div>
+
+            <!-- 項目 5 (新增) -->
+            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
                 <h3 class="text-xl font-bold mb-4">企業/校園 培訓課程</h3>
                 <p>專為企業 EAP（員工協助計畫）及學校師資設計的團體課程，協助建立更健康、更有凝聚力的工作與教學環境。</p>
             </div>
-					           <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+            
+            <!-- 項目 6 (新增) -->
+            <div class="card-bg-light p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
                 <h3 class="text-xl font-bold mb-4">專業人士進修培訓</h3>
                 <p>提供助人工作者、輔導老師或相關領域學生之專業進修，主題包含藝術治療應用、案例研討等，可提供研習時數證明。</p>
             </div>
-                </div>
-            </div>
-        </section>
+            
+        </div>
+    </div>
+</section>
+
         
         
-        <!-- Courses Section with Tabs -->
         <section id="courses" class="py-20 section-bg-dark">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">✨ 課程資訊</h2>
-                    <p class="mt-4 max-w-2xl mx-auto section-title-desc">探索為您設計的療癒旅程，找到觸動心靈的創作時刻。</p>
-                    <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
-                </div>
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold">✨ 課程資訊</h2>
+            <p class="mt-4 max-w-2xl mx-auto section-title-desc">探索為您設計的療癒旅程，找到觸動心靈的創作時刻。</p>
+            <div class="w-24 h-1 section-divider mx-auto mt-4"></div>
+        </div>
 
-                <div class="flex justify-center mb-10">
-                    <div class="flex space-x-2 p-1 rounded-xl shadow-inner tab-wrapper-bg">
-                        <button data-tab="latest" class="course-tab tab-active px-6 py-2 rounded-lg font-semibold transition-colors duration-300">最新課程</button>
-                        <button data-tab="past" class="course-tab tab-inactive px-6 py-2 rounded-lg font-semibold transition-colors duration-300">過往課程回顧</button>
-                    </div>
-                </div>
+        <div class="flex justify-center mb-10">
+            <div class="flex space-x-2 p-1 rounded-xl shadow-inner tab-wrapper-bg">
+                <button data-tab="latest" class="course-tab tab-active px-6 py-2 rounded-lg font-semibold transition-colors duration-300">最新課程</button>
+                <button data-tab="past" class="course-tab tab-inactive px-6 py-2 rounded-lg font-semibold transition-colors duration-300">過往課程回顧</button>
+            </div>
+        </div>
 
-                <div>
-                    <div id="latest-courses" class="course-content">
-                        <!-- *** 修改 ***: 原本的 grid-cols-3 改為 grid-cols-2 (在中等螢幕上)，確保並排 -->
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            
-                            <!-- 卡片 1: 心靈拼貼 -->
-                            <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
-                                <div class="overflow-hidden">
-                                    <img src="images/latest-course.jpg" 
-                                         alt="最新課程照片" 
-                                         class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.src='https://placehold.co/600x400/a2d2ff/333333?text=圖片載入失敗'; this.onerror=null;">
-                                </div>
-                                <div class="p-6 flex flex-col flex-grow">
-                                    <h3 class="text-xl font-bold mb-3">✨ 實體課程</h3>
-                                    <p class="mb-4 flex-grow">點擊下方按鈕查看更多資訊。</p>
-                                    <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
-                                </div>
-                            </div>
-                            
-                            <!-- *** 新增 ***: 卡片 2: 線上課程 -->
-                            <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
-                                <div class="overflow-hidden">
-                                    <!-- 您可以將 src 改為 'images/online-course.jpg' 之類的 -->
-                                    <img src="images/latest-course-live.jpg" 
-                                         alt="線上課程照片" 
-                                         class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.src='https://placehold.co/600x400/a2d2ff/333333?text=圖片載入失敗'; this.onerror=null;">
-                                </div>
-                                <div class="p-6 flex flex-col flex-grow">
-                                    <h3 class="text-xl font-bold mb-3">✨ 線上課程</h3>
-                                    <p class="mb-4 flex-grow">不受地點限制，在家就能參與的療癒旅程。點擊下方按鈕查看更多資訊。</p>
-                                    <!-- 您可以將 href 改為您的線上課程報名連結 -->
-                                    <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
-                                </div>
-                            </div>
-
+        <div>
+            <div id="latest-courses" class="course-content flex justify-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
+                        <div class="overflow-hidden">
+                            <img src="images/latest-course.jpg" 
+                                 alt="最新課程照片" 
+                                 class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://placehold.co/600x400/a2d2ff/333333?text=圖片載入失敗'; this.onerror=null;">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-3">✨ 實體課程</h3>
+                            <p class="mb-4 flex-grow">點擊下方按鈕查看更多資訊。</p>
+                            <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
                         </div>
                     </div>
+                    
+                    <div class="card-bg-light rounded-2xl shadow-lg overflow-hidden flex flex-col group border border-gray-200">
+                        <div class="overflow-hidden">
+                            <img src="images/latest-course-live.jpg" 
+                                 alt="線上課程照片" 
+                                 class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.src='https://placehold.co/600x400/a2d2ff/333333?text=圖片載入失敗'; this.onerror=null;">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-3">✨ 線上課程</h3>
+                            <p class="mb-4 flex-grow">不受地點限制，在家就能參與的療癒旅程。點擊下方按鈕查看更多資訊。</p>
+                            <a href="#" target="_blank" class="mt-auto block text-center w-full btn-primary font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">立即報名</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            </div>
+    </div>
+</section>
 
                     <div id="past-courses" class="course-content hidden">
                         
