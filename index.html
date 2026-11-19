@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -181,6 +181,42 @@
         footer .text-gray-400 {
             color: var(--color-accent);
         }
+
+        /* ===== 首頁照片跑馬燈 ===== */
+        .carousel-track {
+            display: flex; gap: 1rem; overflow-x: auto;
+            scroll-snap-type: x mandatory; scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-slide {
+            position: relative; flex: 0 0 85%; aspect-ratio: 4 / 3;
+            scroll-snap-align: center; border-radius: 1rem; overflow: hidden;
+            background: #e5e7eb; box-shadow: 0 6px 16px rgba(0,49,83,.18); cursor: pointer;
+        }
+        @media (min-width: 640px)  { .carousel-slide { flex-basis: calc((100% - 1rem) / 2); } }
+        @media (min-width: 1024px) { .carousel-slide { flex-basis: calc((100% - 2rem) / 3); aspect-ratio: 3 / 2; } }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+        .carousel-slide:hover img, .carousel-slide.show-caption img { transform: scale(1.06); }
+        .carousel-caption {
+            position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 1.25rem; color: #fff; opacity: 0; transition: opacity .3s;
+            background: linear-gradient(to top, rgba(0,49,83,.88) 0%, rgba(0,49,83,.55) 45%, rgba(0,49,83,0) 80%);
+        }
+        .carousel-slide:hover .carousel-caption,
+        .carousel-slide:focus-within .carousel-caption,
+        .carousel-slide.show-caption .carousel-caption { opacity: 1; }
+        .carousel-caption h3 { color: var(--color-highlight) !important; font-weight: 700; font-size: 1.1rem; margin-bottom: .25rem; }
+        .carousel-caption p  { color: #fff !important; font-size: .9rem; line-height: 1.5; }
+        .carousel-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+            width: 2.5rem; height: 2.5rem; border-radius: 9999px; border: 0; cursor: pointer;
+            background: rgba(255,255,255,.92); color: var(--color-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,.25); font-size: 1.25rem; line-height: 1;
+        }
+        .carousel-btn:hover { background: var(--color-highlight); }
+        .carousel-dot { width: .6rem; height: .6rem; border-radius: 9999px; background: #cbd5e1; border: 0; padding: 0; cursor: pointer; transition: all .3s; }
+        .carousel-dot.active { background: var(--color-primary); width: 1.5rem; }
     </style>
 </head>
 <body class="antialiased">
@@ -193,7 +229,12 @@
             <a href="#home" class="block">
                 <img src="images/main_pic.png" alt="天晴藝術療癒諮商室 Logo" class="h-10 md:h-12 w-auto">
             </a>
-            <nav class="hidden md:flex space-x-8">
+            <nav class="hidden md:flex items-center space-x-8">
+                <!-- 社群圖示：FB / IG -->
+                <div class="flex items-center space-x-4 pr-6 border-r border-white/50">
+                    <a href="https://www.facebook.com/profile.php?id=100064103702351&mibextid=wwxifr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" class="text-white hover:text-[var(--color-highlight)] transition duration-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62.75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg></a>
+                    <a href="https://www.instagram.com/sunny_art_healing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" class="text-white hover:text-[var(--color-highlight)] transition duration-300"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
                 <!-- *** 修正 ***: 文字改為白色，hover 改為亮黃色 -->
                 <a href="#about" class="text-white hover:text-[var(--color-highlight)] transition duration-300">關於我們</a>
                 <a href="#services" class="text-white hover:text-[var(--color-highlight)] transition duration-300">服務項目</a>
@@ -207,6 +248,10 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <div class="flex items-center space-x-5 py-2">
+                <a href="https://www.facebook.com/profile.php?id=100064103702351&mibextid=wwxifr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white hover:text-[var(--color-highlight)]"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62.75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg></a>
+                <a href="https://www.instagram.com/sunny_art_healing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white hover:text-[var(--color-highlight)]"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            </div>
             <!-- *** 修正 ***: 文字改為白色，hover 改為亮黃色 -->
             <a href="#about" class="block py-2 text-white hover:text-[var(--color-highlight)]">關於我們</a>
             <a href="#services" class="block py-2 text-white hover:text-[var(--color-highlight)]">服務項目</a>
@@ -219,12 +264,21 @@
     <main>
         
         <!-- Home Section -->
-        <section id="home" class="section-bg-light min-h-[80vh] flex items-center">
-            <div class="container mx-auto px-6 py-10
-						text-center">
+        <section id="home" class="section-bg-light pt-6 pb-12">
+            <div class="container mx-auto px-6 py-4 text-center">
                 <!-- 占位 Hero 圖片 -->
-                <img src="images/main.png" alt="天晴藝術療癒諮商室 Logo" class="w-64 md:w-80 lg:w-96 mx-auto mb-8 animate-fade-in-up"
+                <img src="images/main.png" alt="天晴藝術療癒諮商室 Logo" class="w-28 md:w-36 lg:w-40 mx-auto mb-5 animate-fade-in-up"
                      onerror="this.src='https://placehold.co/400x400/bde0fe/003153?text=天晴+Hero'; this.onerror=null;">
+                <!-- 照片跑馬燈（資料來自 Google Sheet，讀取失敗時使用 script 內的備援資料） -->
+                <div id="gallery" class="mb-10">
+                    <div class="relative max-w-6xl mx-auto">
+                        <button id="carousel-prev" class="carousel-btn -left-3 md:-left-5" aria-label="上一張">&#10094;</button>
+                        <div id="carousel-track" class="carousel-track" aria-live="off"></div>
+                        <button id="carousel-next" class="carousel-btn -right-3 md:-right-5" aria-label="下一張">&#10095;</button>
+                    </div>
+                    <div id="carousel-dots" class="flex justify-center items-center gap-2 mt-5"></div>
+                </div>
+
                 <p class="text-xl md:text-2xl text-text-primary-dark mb-8">🌤️天晴給你晴天般的好心情🌤️</p>
                 <div class="max-w-xl mx-auto text-lg text-text-primary-dark space-y-2">
                     <p>每個人都值得擁有一段療癒的旅程。</p>
@@ -572,6 +626,155 @@
             });
         });
         
+
+        // ===================== 照片跑馬燈 =====================
+        // ★ 客戶只需改這一行：貼上 Google Sheet「發佈到網路」的 CSV 網址 ★
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSWnCf-ZIUqHsWNSlN07YF0z_grhNnZ9xtY5WYApCeXAqzqYwhpArGqWXpOgNpmuNeyKPzv8SpGBgpy/pub?gid=1804162251&single=true&output=csv';   // 例：'https://docs.google.com/spreadsheets/d/e/xxxx/pub?output=csv'
+        const AUTOPLAY_MS = 4000;    // 自動輪播間隔（毫秒）
+
+        // 備援資料（Sheet 未設定或讀取失敗時使用）
+        const FALLBACK_SLIDES = [
+            { title: '有些心情一時說不出口', desc: '選一張有感覺的圖卡，用各種媒材拼出此刻的心情。', img: 'images/carousel/01.jpg' },
+            { title: '藝術與植物的對話', desc: '把植物放進畫面裡，創作屬於自己的小風景。', img: 'images/carousel/02.jpg' },
+            { title: '教師培訓', desc: '連鎖教育機構教師培訓：認識藝術治療與心理學。', img: 'images/carousel/03.jpg' },
+            { title: '科學彩繪手作活動', desc: '動手組裝、動手創作，探索科學的樂趣。', img: 'images/carousel/04.jpg' },
+            { title: '柔彩植物手作時光', desc: '在柔和的色彩與植物間，慢下來陪伴自己。', img: 'images/carousel/05.jpg' },
+            { title: '拚一座小花園', desc: '藝術拼貼 × 植物手作，拼出心中的小花園。', img: 'images/carousel/06.jpg' },
+            { title: '自閉症兒童藝術創作', desc: '自由揮灑色彩，用創作表達無法說出口的感受。', img: 'images/carousel/07.jpg' },
+            { title: '兒童心理團課：我會控制情緒', desc: '情緒操練實戰，學習辨識與表達情緒。', img: 'images/carousel/08.jpg' },
+            { title: '自我探索', desc: '用黏土與手作，打造內在的安心角落。', img: 'images/carousel/09.jpg' },
+            { title: '青少年心靈圖卡：拼貼藝術工作坊', desc: '在拼貼中看見自己，與同伴一起分享。', img: 'images/carousel/10.jpg' }
+        ];
+
+        // 簡易 CSV 解析（支援引號、逗號、換行）
+        function parseCSV(text) {
+            const rows = []; let row = [], cell = '', q = false;
+            text = text.replace(/^\uFEFF/, '');
+            for (let i = 0; i < text.length; i++) {
+                const c = text[i];
+                if (q) {
+                    if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+                    else if (c === '"') q = false;
+                    else cell += c;
+                } else if (c === '"') q = true;
+                else if (c === ',') { row.push(cell); cell = ''; }
+                else if (c === '\n' || c === '\r') {
+                    if (c === '\r' && text[i + 1] === '\n') i++;
+                    row.push(cell); rows.push(row); row = []; cell = '';
+                } else cell += c;
+            }
+            if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+            return rows.filter(r => r.some(x => x.trim() !== ''));
+        }
+
+        // Google Drive 分享連結 → 可直接顯示的圖片網址
+        function normalizeImageUrl(url) {
+            url = (url || '').trim();
+            const m = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || url.match(/drive\.google\.com\/(?:open|uc)\?(?:.*&)?id=([\w-]+)/);
+            return m ? 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w1600' : url;
+        }
+
+        async function loadSlides() {
+            if (!SHEET_CSV_URL) return FALLBACK_SLIDES;
+            try {
+                const res = await fetch(SHEET_CSV_URL + (SHEET_CSV_URL.includes('?') ? '&' : '?') + 't=' + Date.now());
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const rows = parseCSV(await res.text());
+                const head = rows.shift().map(h => h.trim());
+                const idx = name => head.findIndex(h => h.includes(name));
+                const iOrder = idx('排序'), iTitle = idx('標題'), iDesc = idx('說明'), iImg = idx('圖片'), iShow = idx('顯示');
+                const slides = rows.map((r, n) => ({
+                    order: parseFloat(r[iOrder]) || (n + 1) * 1000,
+                    title: (r[iTitle] || '').trim(),
+                    desc: (r[iDesc] || '').trim(),
+                    img: normalizeImageUrl(r[iImg]),
+                    show: !/^(否|n|no|false|0|隱藏|不顯示)$/i.test((r[iShow] || '').trim())
+                })).filter(s => s.show && s.img).sort((a, b) => a.order - b.order);
+                return slides.length ? slides : FALLBACK_SLIDES;
+            } catch (e) {
+                console.warn('讀取 Google Sheet 失敗，改用備援資料：', e);
+                return FALLBACK_SLIDES;
+            }
+        }
+
+        (async function initCarousel() {
+            const track = document.getElementById('carousel-track');
+            const dotsBox = document.getElementById('carousel-dots');
+            const slides = await loadSlides();
+
+            slides.forEach(s => {
+                const el = document.createElement('div');
+                el.className = 'carousel-slide';
+                el.tabIndex = 0;
+                const img = document.createElement('img');
+                img.src = s.img; img.alt = s.title; img.loading = 'lazy'; img.draggable = false;
+                img.onerror = () => { img.onerror = null; img.src = 'https://placehold.co/800x600/bde0fe/003153?text=' + encodeURIComponent(s.title || '天晴'); };
+                const cap = document.createElement('div');
+                cap.className = 'carousel-caption';
+                const h = document.createElement('h3'); h.textContent = s.title;
+                cap.appendChild(h);
+                if (s.desc) { const p = document.createElement('p'); p.textContent = s.desc; cap.appendChild(p); }
+                el.append(img, cap);
+                // 手機：點一下顯示/隱藏說明
+                el.addEventListener('click', () => {
+                    const on = el.classList.contains('show-caption');
+                    track.querySelectorAll('.show-caption').forEach(x => x.classList.remove('show-caption'));
+                    if (!on) el.classList.add('show-caption');
+                });
+                track.appendChild(el);
+            });
+
+            const items = [...track.children];
+            const step = () => items[0].getBoundingClientRect().width + 16;     // 一張寬度 + gap
+            const perView = () => Math.max(1, Math.round(track.clientWidth / step()));
+            const pages = () => Math.max(1, items.length - perView() + 1);
+            const current = () => Math.min(pages() - 1, Math.round(track.scrollLeft / step()));
+
+            function buildDots() {
+                dotsBox.innerHTML = '';
+                for (let i = 0; i < pages(); i++) {
+                    const d = document.createElement('button');
+                    d.className = 'carousel-dot'; d.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
+                    d.onclick = () => { goTo(i); restart(); };
+                    dotsBox.appendChild(d);
+                }
+                updateDots();
+            }
+            function updateDots() {
+                const c = current();
+                [...dotsBox.children].forEach((d, i) => d.classList.toggle('active', i === c));
+            }
+            function goTo(i) { track.scrollTo({ left: i * step(), behavior: 'smooth' }); }
+            function next() { const c = current(); goTo(c >= pages() - 1 ? 0 : c + 1); }
+            function prev() { const c = current(); goTo(c <= 0 ? pages() - 1 : c - 1); }
+
+            let timer = null;
+            const start = () => { stop(); timer = setInterval(next, AUTOPLAY_MS); };
+            const stop = () => { if (timer) clearInterval(timer); timer = null; };
+            const restart = () => start();
+
+            document.getElementById('carousel-next').onclick = () => { next(); restart(); };
+            document.getElementById('carousel-prev').onclick = () => { prev(); restart(); };
+            track.addEventListener('scroll', updateDots, { passive: true });
+            // 滑鼠移入 / 手指觸碰時暫停，離開後繼續
+            track.addEventListener('mouseenter', stop);
+            track.addEventListener('mouseleave', start);
+            track.addEventListener('touchstart', stop, { passive: true });
+            track.addEventListener('touchend', () => setTimeout(start, 2500), { passive: true });
+            window.addEventListener('resize', buildDots);
+            document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+            // 桌機：滑鼠拖曳切換
+            let drag = null;
+            track.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') drag = { x: e.clientX, left: track.scrollLeft }; });
+            window.addEventListener('pointerup', e => {
+                if (!drag) return;
+                const dx = e.clientX - drag.x; drag = null;
+                if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); restart(); }
+            });
+
+            buildDots(); start();
+        })();
     </script>
 </body>
 </html>
