@@ -226,9 +226,16 @@
     <!-- *** 修正 ***: 更改背景為 #00cccc 透明 -->
     <header id="header" class="bg-[#00cccc]/50 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="block">
-                <img src="images/main_pic.png" alt="天晴藝術療癒諮商室 Logo" class="h-10 md:h-12 w-auto">
-            </a>
+            <div class="flex items-center gap-2 min-w-0">
+                <a href="#home" class="block flex-shrink-0">
+                    <img src="images/main_pic.png" alt="天晴藝術療癒諮商室 Logo" class="h-10 md:h-12 w-auto">
+                </a>
+                <!-- 手機版：FB / IG 圖示直接顯示在 Logo 右側 -->
+                <div class="flex md:hidden items-center gap-1 flex-shrink-0">
+                    <a href="https://www.facebook.com/profile.php?id=100064103702351&mibextid=wwxifr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white hover:text-[var(--color-highlight)] p-1"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62.75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg></a>
+                    <a href="https://www.instagram.com/sunny_art_healing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white hover:text-[var(--color-highlight)] p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
+            </div>
             <nav class="hidden md:flex items-center space-x-8">
                 <!-- 社群圖示：FB / IG -->
                 <div class="flex items-center space-x-4 pr-6 border-r border-white/50">
@@ -248,10 +255,6 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <div class="flex items-center space-x-5 py-2">
-                <a href="https://www.facebook.com/profile.php?id=100064103702351&mibextid=wwxifr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white hover:text-[var(--color-highlight)]"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 12.15c0-5.74-4.66-10.4-10.4-10.4S1.7 6.4 1.7 12.15c0 5.08 3.66 9.3 8.4 10.2v-7.2H7.5v-3h2.6V9.85c0-2.58 1.54-4 3.88-4 1.11 0 2.22.2 2.22.2v2.5h-1.3c-1.25 0-1.62.75-1.62 1.56v1.94h2.8l-.45 3h-2.35v7.2c4.74-.9 8.4-5.12 8.4-10.2Z"></path></svg></a>
-                <a href="https://www.instagram.com/sunny_art_healing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white hover:text-[var(--color-highlight)]"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-            </div>
             <!-- *** 修正 ***: 文字改為白色，hover 改為亮黃色 -->
             <a href="#about" class="block py-2 text-white hover:text-[var(--color-highlight)]">關於我們</a>
             <a href="#services" class="block py-2 text-white hover:text-[var(--color-highlight)]">服務項目</a>
