@@ -704,13 +704,16 @@
             const track = document.getElementById('carousel-track');
             const dotsBox = document.getElementById('carousel-dots');
             const slides = await loadSlides();
+            const n = slides.length;
 
-            slides.forEach(s => {
+            function makeSlide(s, isClone) {
                 const el = document.createElement('div');
                 el.className = 'carousel-slide';
-                el.tabIndex = 0;
+                el.tabIndex = isClone ? -1 : 0;
+                if (isClone) el.setAttribute('aria-hidden', 'true');
                 const img = document.createElement('img');
-                img.src = s.img; img.alt = s.title; img.loading = 'lazy'; img.draggable = false;
+                img.src = s.img; img.alt = s.title; img.draggable = false;
+                if (!isClone) img.loading = 'lazy';
                 img.onerror = () => { img.onerror = null; img.src = 'https://placehold.co/800x600/bde0fe/003153?text=' + encodeURIComponent(s.title || '天晴'); };
                 const cap = document.createElement('div');
                 cap.className = 'carousel-caption';
@@ -724,58 +727,82 @@
                     track.querySelectorAll('.show-caption').forEach(x => x.classList.remove('show-caption'));
                     if (!on) el.classList.add('show-caption');
                 });
-                track.appendChild(el);
-            });
+                return el;
+            }
 
-            const items = [...track.children];
-            const step = () => items[0].getBoundingClientRect().width + 16;     // 一張寬度 + gap
-            const perView = () => Math.max(1, Math.round(track.clientWidth / step()));
-            const pages = () => Math.max(1, items.length - perView() + 1);
-            const current = () => Math.min(pages() - 1, Math.round(track.scrollLeft / step()));
+            // 無縫循環：前後各複製 K 張，捲到複製區時瞬間跳回真正位置，視覺上就是一路往右接回第一張
+            const K = n > 3 ? 3 : 0;
+            slides.slice(n - K).forEach(s => track.appendChild(makeSlide(s, true)));   // 前面：最後 K 張的複製
+            slides.forEach(s => track.appendChild(makeSlide(s, false)));                // 真正的 n 張
+            slides.slice(0, K).forEach(s => track.appendChild(makeSlide(s, true)));     // 後面：前 K 張的複製
+
+            const step = () => track.children[0].getBoundingClientRect().width + 16;    // 一張寬度 + gap
+            const rawIndex = () => Math.round(track.scrollLeft / step());
+            const realIndex = () => ((rawIndex() - K) % n + n) % n;
+
+            function jumpTo(left) {          // 瞬間定位（不做動畫）
+                track.style.scrollBehavior = 'auto';
+                track.scrollLeft = left;
+                track.style.scrollBehavior = '';
+            }
 
             function buildDots() {
                 dotsBox.innerHTML = '';
-                for (let i = 0; i < pages(); i++) {
+                for (let i = 0; i < n; i++) {
                     const d = document.createElement('button');
                     d.className = 'carousel-dot'; d.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
-                    d.onclick = () => { goTo(i); restart(); };
+                    d.onclick = () => { track.scrollTo({ left: (i + K) * step(), behavior: 'smooth' }); restart(); };
                     dotsBox.appendChild(d);
                 }
                 updateDots();
             }
             function updateDots() {
-                const c = current();
+                const c = realIndex();
                 [...dotsBox.children].forEach((d, i) => d.classList.toggle('active', i === c));
             }
-            function goTo(i) { track.scrollTo({ left: i * step(), behavior: 'smooth' }); }
-            function next() { const c = current(); goTo(c >= pages() - 1 ? 0 : c + 1); }
-            function prev() { const c = current(); goTo(c <= 0 ? pages() - 1 : c - 1); }
+
+            // 捲動停止後，若停在複製區，就悄悄跳回對應的真正位置
+            let settleTimer = null, touching = false;
+            function settle() {
+                if (!K || touching) return;
+                const w = step(), left = track.scrollLeft;
+                if (left >= (n + K) * w - 2) jumpTo(left - n * w);
+                else if (left <= (K - 1) * w + 2 && rawIndex() < K) jumpTo(left + n * w);
+            }
+            track.addEventListener('scroll', () => {
+                updateDots();
+                clearTimeout(settleTimer);
+                settleTimer = setTimeout(settle, 120);
+            }, { passive: true });
+
+            function next() { track.scrollTo({ left: (rawIndex() + 1) * step(), behavior: 'smooth' }); }
+            function prev() { track.scrollTo({ left: (rawIndex() - 1) * step(), behavior: 'smooth' }); }
 
             let timer = null;
-            const start = () => { stop(); timer = setInterval(next, AUTOPLAY_MS); };
             const stop = () => { if (timer) clearInterval(timer); timer = null; };
+            const start = () => { stop(); if (n > 1) timer = setInterval(() => { settle(); next(); }, AUTOPLAY_MS); };
             const restart = () => start();
 
-            document.getElementById('carousel-next').onclick = () => { next(); restart(); };
-            document.getElementById('carousel-prev').onclick = () => { prev(); restart(); };
-            track.addEventListener('scroll', updateDots, { passive: true });
+            document.getElementById('carousel-next').onclick = () => { settle(); next(); restart(); };
+            document.getElementById('carousel-prev').onclick = () => { settle(); prev(); restart(); };
             // 滑鼠移入 / 手指觸碰時暫停，離開後繼續
             track.addEventListener('mouseenter', stop);
             track.addEventListener('mouseleave', start);
-            track.addEventListener('touchstart', stop, { passive: true });
-            track.addEventListener('touchend', () => setTimeout(start, 2500), { passive: true });
-            window.addEventListener('resize', buildDots);
+            track.addEventListener('touchstart', () => { touching = true; stop(); }, { passive: true });
+            track.addEventListener('touchend', () => { touching = false; clearTimeout(settleTimer); settleTimer = setTimeout(settle, 400); setTimeout(start, 2500); }, { passive: true });
+            window.addEventListener('resize', () => { jumpTo((realIndex() + K) * step()); buildDots(); });
             document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 
             // 桌機：滑鼠拖曳切換
             let drag = null;
-            track.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') drag = { x: e.clientX, left: track.scrollLeft }; });
+            track.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') drag = { x: e.clientX }; });
             window.addEventListener('pointerup', e => {
                 if (!drag) return;
                 const dx = e.clientX - drag.x; drag = null;
-                if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); restart(); }
+                if (Math.abs(dx) > 50) { settle(); dx < 0 ? next() : prev(); restart(); }
             });
 
+            jumpTo(K * step());   // 從真正的第一張開始
             buildDots(); start();
         })();
     </script>
